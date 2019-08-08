@@ -1,5 +1,2 @@
-com\revature\dao\DataManager.class
 com\revature\dao\domain\User.class
-com\revature\login.class
 com\revature\dao\FormServlet.class
-com\revature\register.class
