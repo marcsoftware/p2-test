@@ -98,6 +98,13 @@ public class FormServlet extends HttpServlet {
 			// After transaction, new movie is persisted and id automatically updated
 			System.out.println(new_user);
 
+			 transaction = session.beginTransaction();
+			 new_user = new User( user_string+"NEXT", "melcherCODED");
+			session.save(new_user);
+			transaction.commit();
+			// After transaction, new movie is persisted and id automatically updated
+			System.out.println(new_user);
+
 
 		//---------------------------------
 		// Query - write parameterized HQL and native SQL
