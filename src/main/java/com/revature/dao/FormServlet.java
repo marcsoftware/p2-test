@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 
 import org.hibernate.Session;
@@ -74,22 +75,61 @@ public class FormServlet extends HttpServlet {
 		//String user = request.getParameter("user");
 		//String password = request.getParameter("password");
 		// Configure and build SessionFactory
-        Configuration configuration = new Configuration().configure();
-        StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder()
-            .applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(ssrb.build());
-        
-        // Create a session
-		Session session = sessionFactory.openSession();
-		
-		// Begin a transaction and save a new movie
-        Transaction transaction = session.beginTransaction();
-        User new_user = new User( "marcHARD", "melcherCODED");
-        session.save(new_user);
-        transaction.commit();
 
-        // After transaction, new movie is persisted and id automatically updated
-        System.out.println(new_user);
+
+		//
+		
+		
+		//save record
+		try{
+			Configuration configuration = new Configuration().configure();
+			StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder()
+				.applySettings(configuration.getProperties());
+			SessionFactory sessionFactory = configuration.buildSessionFactory(ssrb.build());
+			
+			// Create a session
+			Session session = sessionFactory.openSession();
+			
+			// Begin a transaction and save a new movie
+			Transaction transaction = session.beginTransaction();
+			User new_user = new User( "marcHARD", "melcherCODED");
+			session.save(new_user);
+			transaction.commit();
+			// After transaction, new movie is persisted and id automatically updated
+			System.out.println(new_user);
+
+
+		//---------------------------------
+		// Query - write parameterized HQL and native SQL
+		List<User> movies = session.createQuery("from User where id > :varId")
+		.setInteger("varId", 0)
+		.list();
+		System.out.println("----------------------------------------------------------------------------");
+		System.out.println(movies);
+		System.out.println("----------------------------------------------------------------------------");
+		System.out.println("----------------------------------------------------------------------------");
+/*
+		// Criteria - programmatic SELECT statement
+		movies = session.createCriteria(User.class)
+		.add(Restrictions.between("id", 2, 10))
+		.addOrder(Order.desc("username"))
+		.list();
+
+		// Persist movie from DB to Java object
+		User jurassicPark = (User) session.get(User.class, 1);
+		System.out.println(jurassicPark);
+*/
+		session.close();
+		sessionFactory.close();
+		//---------------------------
+	
+
+
+		}catch (Exception e) {
+			System.out.println(e.getMessage()); 
+		}finally{
+       
+		}
 
 	}
 
