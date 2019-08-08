@@ -71,7 +71,7 @@ public class FormServlet extends HttpServlet {
 	}
 
 	//save name with hibernate
-	public void hSaveName(String user, String password){
+	public void hSaveName(String user_string, String password){
 		//String user = request.getParameter("user");
 		//String password = request.getParameter("password");
 		// Configure and build SessionFactory
@@ -81,7 +81,7 @@ public class FormServlet extends HttpServlet {
 		
 		
 		//save record
-		try{
+		
 			Configuration configuration = new Configuration().configure();
 			StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties());
@@ -92,7 +92,7 @@ public class FormServlet extends HttpServlet {
 			
 			// Begin a transaction and save a new movie
 			Transaction transaction = session.beginTransaction();
-			User new_user = new User( "marcHARD", "melcherCODED");
+			User new_user = new User( user_string, "melcherCODED");
 			session.save(new_user);
 			transaction.commit();
 			// After transaction, new movie is persisted and id automatically updated
@@ -105,7 +105,7 @@ public class FormServlet extends HttpServlet {
 		.setInteger("varId", 0)
 		.list();
 		System.out.println("----------------------------------------------------------------------------");
-		System.out.println(movies);
+		System.out.println(";;;"+movies);
 		System.out.println("----------------------------------------------------------------------------");
 		System.out.println("----------------------------------------------------------------------------");
 /*
@@ -125,11 +125,7 @@ public class FormServlet extends HttpServlet {
 	
 
 
-		}catch (Exception e) {
-			System.out.println(e.getMessage()); 
-		}finally{
-       
-		}
+		
 
 	}
 
