@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS project1;
-CREATE DATABASE project1;
-\c project1;
+DROP DATABASE IF EXISTS project2;
+CREATE DATABASE project2;
+\c project2;
 
 CREATE TABLE user_accounts(
    id serial PRIMARY KEY,
