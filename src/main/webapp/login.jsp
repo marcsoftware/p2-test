@@ -17,28 +17,9 @@
 	    </style>
 	</head>
 	<body>
-	    <h1>Register</h1>
+	    <h1>login</h1>
 	    <div ng-app="myApp">
-	        <form ng-controller="UserController" ng-submit="sendData()">
-	            <p>
-	                <label>Enter your name: </label>
-					<input id="user_name" type="text" ng-model="name" placeholder="username" 
-					onblur="this.placeholder = 'username'" onfocus="this.placeholder = ''" />
-				</p>
-				
-				<p>
-	                <label>Enter your password: </label>
-					<input id="password" type="text" ng-model="password" placeholder="password" 
-					onblur="this.placeholder = 'password'" onfocus="this.placeholder = ''" />
-	            </p>
-	            <p>
-	                <button id="formBtn" type="submit">Submit</button>
-	            </p>
-	            <!-- Display's Output On The Screen -->
-	            <p>
-	            	<span id="welcomeText" class="cssStyling">{{msgFromServlet}}</span>
-	        	</p>
-	        </form>	        
+	        LOGIN      
 	    </div>
 	</body>
 </html>

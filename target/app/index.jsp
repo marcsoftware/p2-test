@@ -21,7 +21,8 @@
 	    <div ng-app="myApp">
 			HOMEPAGE  
 			
-<a href="/register">register</a>
+<a href="/app/login">login</a>
+<a href="/app/register">register</a>
  
 	    </div>
 	</body>
