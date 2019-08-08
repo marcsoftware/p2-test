@@ -22,8 +22,8 @@
 	        <form ng-controller="UserController" ng-submit="sendData()">
 	            <p>
 	                <label>Enter your name: </label>
-					<input id="user_name" type="text" ng-model="name" placeholder="User Name" 
-					onblur="this.placeholder = 'User Name'" onfocus="this.placeholder = ''" />
+					<input id="user_name" type="text" ng-model="name" placeholder="username" 
+					onblur="this.placeholder = 'username'" onfocus="this.placeholder = ''" />
 				</p>
 				
 				<p>
