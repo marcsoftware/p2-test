@@ -49,38 +49,24 @@ public class FormServlet extends HttpServlet {
 			}
 			jObj = new JSONObject(sb.toString());
 			String user_name = jObj.getString("username");
+			String password = jObj.getString("password");
 
 			/**** Preparing The Output Response ****/
 			resp.setContentType("text/html");
 			resp.setCharacterEncoding("UTF-8");
-			resp.getWriter().write("Welcome " + user_name + " !!");
-			hSaveName(user_name,"harcode");
+			resp.getWriter().write("You are registered:  " + user_name + " !!");
+			hSaveName(user_name,password);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
 
 
-	public void saveName(String user, String password){
-		//String user = request.getParameter("user");
-		//String password = request.getParameter("password");
-		DataManager session = new DataManager();
-		session.connect();
-		Boolean result = session.register(user,password);
-
-	}
+	
 
 	//save name with hibernate
-	public void hSaveName(String user_string, String password){
-		//String user = request.getParameter("user");
-		//String password = request.getParameter("password");
-		// Configure and build SessionFactory
-
-
-		//
+	public void hSaveName(String user_string, String password_string){
 		
-		
-		//save record
 		
 			Configuration configuration = new Configuration().configure();
 			StandardServiceRegistryBuilder ssrb = new StandardServiceRegistryBuilder()
@@ -92,19 +78,13 @@ public class FormServlet extends HttpServlet {
 			
 			// Begin a transaction and save a new movie
 			Transaction transaction = session.beginTransaction();
-			User new_user = new User( user_string, "melcherCODED");
+			User new_user = new User( user_string, password_string);
 			session.save(new_user);
 			transaction.commit();
 			// After transaction, new movie is persisted and id automatically updated
 			System.out.println(new_user);
 
-			 transaction = session.beginTransaction();
-			 new_user = new User( user_string+"NEXT", "melcherCODED");
-			session.save(new_user);
-			transaction.commit();
-			// After transaction, new movie is persisted and id automatically updated
-			System.out.println(new_user);
-
+	
 
 		//---------------------------------
 		// Query - write parameterized HQL and native SQL

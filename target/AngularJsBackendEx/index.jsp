@@ -17,17 +17,19 @@
 	    </style>
 	</head>
 	<body>
-	    <h1>AngularJS Backend Application</h1>
+	    <h1>Register</h1>
 	    <div ng-app="myApp">
 	        <form ng-controller="UserController" ng-submit="sendData()">
 	            <p>
 	                <label>Enter your name: </label>
-	                <input id="user_name" type="text" ng-model="name" placeholder="User Name" onblur="this.placeholder = 'User Name'" onfocus="this.placeholder = ''" />
+					<input id="user_name" type="text" ng-model="name" placeholder="User Name" 
+					onblur="this.placeholder = 'User Name'" onfocus="this.placeholder = ''" />
 				</p>
 				
 				<p>
-	                <label>Enter your passowrd: </label>
-	                <input id="password" type="text" ng-model="password" placeholder="password" onblur="this.placeholder = 'User Name'" onfocus="this.placeholder = ''" />
+	                <label>Enter your password: </label>
+					<input id="password" type="text" ng-model="password" placeholder="password" 
+					onblur="this.placeholder = 'password'" onfocus="this.placeholder = ''" />
 	            </p>
 	            <p>
 	                <button id="formBtn" type="submit">Submit</button>

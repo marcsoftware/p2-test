@@ -13,7 +13,8 @@ helloAjaxApp.controller("UserController", [ '$scope', '$http', function($scope, 
 			url : 'formServlet',
 			method : "POST",
 			data : {
-				'username' : $scope.name
+				'username' : $scope.name,
+				'password' : $scope.password,
 			}
 		}).then(function(response) {
 			/**** Success Case ****/
