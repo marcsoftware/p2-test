@@ -10,7 +10,7 @@ helloAjaxApp.controller("UserController", [ '$scope', '$http', function($scope, 
 	$http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8";
 	$scope.sendData = function() {
 		$http({
-			url : 'formServlet',
+			url : 'loginServlet',
 			method : "POST",
 			data : {
 				'username' : $scope.name,

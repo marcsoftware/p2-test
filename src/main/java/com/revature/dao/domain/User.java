@@ -17,7 +17,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "username")
+    @Column(name = "username",unique=true)
     private String username;
     
     @Column(name = "password")
@@ -71,25 +71,8 @@ public class User {
     }
 
     public String hash(String password){
-        //
-        String data = password;
-         
-        MessageDigest messageDigest;
-        try {
-            messageDigest = MessageDigest.getInstance("MD5");//TODO replace MD5
-            messageDigest.update(data.getBytes());
-            byte[] messageDigestMD5 = messageDigest.digest();
-            StringBuffer stringBuffer = new StringBuffer();
-            for (byte bytes : messageDigestMD5) {
-                stringBuffer.append(String.format("%02x", bytes & 0xff));
-            }
- 
-            password=stringBuffer.toString();
-        } catch (NoSuchAlgorithmException exception) {
-            // TODO Auto-generated catch block
-            exception.printStackTrace();
-        }
-       return password;
+        return password;
+     
    }
 
 }

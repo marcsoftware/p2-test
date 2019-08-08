@@ -54,7 +54,7 @@ public class LoginServlet extends HttpServlet {
 			/**** Preparing The Output Response ****/
 			resp.setContentType("text/html");
 			resp.setCharacterEncoding("UTF-8");
-			resp.getWriter().write("You are registered:  " + user_name + " !!");
+			resp.getWriter().write("You are logged in?:  " + user_name + " !!");
 			hSaveName(user_name,password);
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -76,23 +76,17 @@ public class LoginServlet extends HttpServlet {
 			// Create a session
 			Session session = sessionFactory.openSession();
 			
-			// Begin a transaction and save a new movie
-			Transaction transaction = session.beginTransaction();
-			User new_user = new User( user_string, password_string);
-			session.save(new_user);
-			transaction.commit();
-			// After transaction, new movie is persisted and id automatically updated
-			System.out.println(new_user);
+		
 
 	
 
 		//---------------------------------
 		// Query - write parameterized HQL and native SQL
-		List<User> movies = session.createQuery("from User where id > :varId")
-		.setInteger("varId", 0)
+		List<User> record = session.createQuery("from User where username = :varName and password = :varPassword")
+		.setString("varName", user_string).setString("varPassword",password_string)
 		.list();
 		System.out.println("----------------------------------------------------------------------------");
-		System.out.println(";;;"+movies);
+		System.out.println(";;;"+record);
 		System.out.println("----------------------------------------------------------------------------");
 		System.out.println("----------------------------------------------------------------------------");
 /*
