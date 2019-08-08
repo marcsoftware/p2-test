@@ -51,11 +51,15 @@ public class LoginServlet extends HttpServlet {
 			String user_name = jObj.getString("username");
 			String password = jObj.getString("password");
 
+			String message = "Wrong username or password.";
+			if(saveName(user_name,password)){
+				message="You are logged in:  " + user_name + " !!";
+			}
 			/**** Preparing The Output Response ****/
 			resp.setContentType("text/html");
 			resp.setCharacterEncoding("UTF-8");
-			resp.getWriter().write("You are logged in?:  " + user_name + " !!");
-			hSaveName(user_name,password);
+			resp.getWriter().write(message);
+			saveName(user_name,password);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
@@ -65,7 +69,7 @@ public class LoginServlet extends HttpServlet {
 	
 
 	//save name with hibernate
-	public void hSaveName(String user_string, String password_string){
+	public Boolean saveName(String user_string, String password_string){
 		
 		
 			Configuration configuration = new Configuration().configure();
@@ -89,23 +93,16 @@ public class LoginServlet extends HttpServlet {
 		System.out.println(";;;"+record);
 		System.out.println("----------------------------------------------------------------------------");
 		System.out.println("----------------------------------------------------------------------------");
-/*
-		// Criteria - programmatic SELECT statement
-		movies = session.createCriteria(User.class)
-		.add(Restrictions.between("id", 2, 10))
-		.addOrder(Order.desc("username"))
-		.list();
 
-		// Persist movie from DB to Java object
-		User jurassicPark = (User) session.get(User.class, 1);
-		System.out.println(jurassicPark);
-*/
 		session.close();
 		sessionFactory.close();
 		//---------------------------
 	
+		if(record.size() >=1){
+			return true;
+		}
 
-
+		return false;
 		
 
 	}
