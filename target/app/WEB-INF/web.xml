@@ -9,11 +9,11 @@
     </welcome-file-list>
 
     <servlet>
-        <servlet-name>FormServlet</servlet-name>
+        <servlet-name>LoginServlet</servlet-name>
         <jsp-file>/login.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
-        <servlet-name>FormServlet</servlet-name>
+        <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>   
     </servlet-mapping>
 

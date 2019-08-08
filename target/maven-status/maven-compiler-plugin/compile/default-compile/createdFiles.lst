@@ -1,2 +1,3 @@
 com\revature\dao\domain\User.class
+com\revature\dao\LoginServlet.class
 com\revature\dao\FormServlet.class
